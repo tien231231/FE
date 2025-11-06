@@ -1,0 +1,92 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Tiến",
+      "email": "tiennq@gmail.com",
+      "salary": 100000,
+      "bonus": "20%",
+      "deduction": "10%"
+    },
+    {
+      "id": "2",
+      "name": "Huy",
+      "email": "huytran@gmail.com",
+      "salary": 95000,
+      "bonus": "15%",
+      "deduction": "5%"
+    },
+    {
+      "id": "3",
+      "name": "Linh",
+      "email": "linhphan@gmail.com",
+      "salary": 110000,
+      "bonus": "18%",
+      "deduction": "7%"
+    },
+    {
+      "id": "4",
+      "name": "Nam",
+      "email": "namnguyen@gmail.com",
+      "salary": 88000,
+      "bonus": "10%",
+      "deduction": "4%"
+    },
+    {
+      "id": "5",
+      "name": "Trang",
+      "email": "trangle@gmail.com",
+      "salary": 120000,
+      "bonus": "25%",
+      "deduction": "12%"
+    },
+    {
+      "id": "6",
+      "name": "Khang",
+      "email": "khangpham@gmail.com",
+      "salary": 102000,
+      "bonus": "22%",
+      "deduction": "9%"
+    },
+    {
+      "id": "7",
+      "name": "My",
+      "email": "myhoang@gmail.com",
+      "salary": 97000,
+      "bonus": "17%",
+      "deduction": "6%"
+    },
+    {
+      "id": "8",
+      "name": "Phúc",
+      "email": "phucvo@gmail.com",
+      "salary": 105000,
+      "bonus": "20%",
+      "deduction": "8%"
+    },
+    {
+      "id": "9",
+      "name": "Quân",
+      "email": "quannguyen@gmail.com",
+      "salary": 93000,
+      "bonus": "12%",
+      "deduction": "5%"
+    },
+    {
+      "id": "10",
+      "name": "Thảo",
+      "email": "thaonguyen@gmail.com",
+      "salary": 99000,
+      "bonus": "19%",
+      "deduction": "7%"
+    },
+    {
+      "id": "3ab5",
+      "name": "Thảo",
+      "email": "tểtrt",
+      "salary": "4234234",
+      "bonus": "df",
+      "deduction": "si"
+    }
+  ]
+}

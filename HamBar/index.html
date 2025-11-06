@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Ẩn / Hiện</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f5f5f5;
+      color: white;
+    }
+
+    /* Thanh navbar */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #000000;
+      padding: 15px 25px;
+    }
+
+  
+  
+
+    .menu a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+      .menu {
+        display: none;
+        flex-direction: column;
+        background-color: #000000;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 180px;
+        padding: 15px;
+        border-radius: 10px;
+      }
+
+      .menu.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+    
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">MyWebsite</div>
+    <div class="menu-toggle" id="menuToggle">☰</div>
+    <div class="menu" id="menu">
+      <a href="#">Trang chủ</a>
+      <a href="#">Giới thiệu</a>
+      <a href="#">Dịch vụ</a>
+      <a href="#">Liên hệ</a>
+    </div>
+  </nav>
+
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const menu = document.getElementById("menu");
+
+    menuToggle.addEventListener("click", () => {
+      menu.classList.toggle("show");
+    });
+  </script>
+</body>
+</html>

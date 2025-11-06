@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Bảng nhân viên</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #999;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+    input {
+      padding: 5px;
+      margin: 5px;
+    }
+    button {
+      padding: 6px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Danh sách nhân viên (từ API)</h2>
+
+  <div>
+    <input type="text" id="name" placeholder="Tên" />
+    <input type="email" id="email" placeholder="Email" />
+    <input type="number" id="salary" placeholder="Lương" />
+    <input type="text" id="bonus" placeholder="Thưởng (vd: 20%)" />
+    <input type="text" id="deduction" placeholder="Khấu trừ (vd: 10%)" />
+    <button id="addBtn">Thêm nhân viên</button>
+  </div>
+
+  <table id="employeeTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Email</th>
+        <th>Lương</th>
+        <th>Thưởng</th>
+        <th>Khấu trừ</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const API_URL = "http://localhost:3000/users";
+    const tbody = document.querySelector("#employeeTable tbody");
+
+    // 🔹 Hàm render bảng
+    function renderTable(data) {
+      tbody.innerHTML = "";
+      data.forEach(emp => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${emp.id}</td>
+          <td>${emp.name}</td>
+          <td>${emp.email}</td>
+          <td>${emp.salary}</td>
+          <td>${emp.bonus}</td>
+          <td>${emp.deduction}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // 🔹 Lấy dữ liệu từ API
+    async function fetchUsers() {
+      try {
+        const res = await fetch(API_URL);
+        if (!res.ok) throw new Error("Không thể lấy dữ liệu từ API");
+        const data = await res.json();
+        renderTable(data);
+      } catch (err) {
+        console.error("Lỗi:", err);
+        alert("Không thể tải dữ liệu từ server!");
+      }
+    }
+
+    // 🔹 Thêm nhân viên mới
+    async function addUser() {
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const salary = document.getElementById("salary").value;
+      const bonus = document.getElementById("bonus").value;
+      const deduction = document.getElementById("deduction").value;
+
+      if (!name || !email || !salary) {
+        alert("Vui lòng nhập đầy đủ thông tin!");
+        return;
+      }
+
+      const newUser = { name, email, salary, bonus, deduction };
+
+      try {
+        const res = await fetch(API_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(newUser)
+        });
+
+        if (!res.ok) throw new Error("Lỗi khi thêm nhân viên");
+        await fetchUsers(); // reload bảng
+        document.querySelectorAll("input").forEach(i => i.value = "");
+      } catch (err) {
+        console.error(err);
+        alert("Không thể thêm nhân viên!");
+      }
+    }
+
+    document.getElementById("addBtn").addEventListener("click", addUser);
+
+    // 🔹 Gọi lần đầu để hiển thị bảng
+    fetchUsers();
+  </script>
+
+</body>
+</html>

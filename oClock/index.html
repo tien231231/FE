@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đồng hồ đếm giờ</title>
+  <style>
+    body {
+      
+      color: rgb(0, 0, 0);
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .clock {
+      font-size: 60px;
+      letter-spacing: 3px;
+      padding: 20px 40px;
+      border: 3px solid #000000;
+      border-radius: 12px;
+      
+      background: rgba(255,255,255,0.05);
+    }
+  </style>
+</head>
+<body>
+  <div class="clock" id="clock">00:00:00</div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+
+      let hours = now.getHours();
+      let minutes = now.getMinutes();
+      let seconds = now.getSeconds();
+
+      // Thêm số 0 nếu < 10 (VD: 09:05:03)
+      hours = hours < 10 ? "0" + hours : hours;
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
+
+      const timeString = `${hours}:${minutes}:${seconds}`;
+      document.getElementById("clock").textContent = timeString;
+    }
+
+    // Cập nhật mỗi giây
+    setInterval(updateClock, 1000);
+    updateClock(); // Gọi lần đầu để hiển thị ngay
+  </script>
+</body>
+</html>
