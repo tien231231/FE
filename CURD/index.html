@@ -1,42 +1,71 @@
 <!DOCTYPE html>
 <html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <title>HW</title>
-  
-  <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HW</title>
 
-  
-</head>
-<body>
-  <h2>Quản lý nhân viên</h2>
-  <button id="openAddModal" class="add-btn">+ Thêm nhân viên</button>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <h2>Quản lý nhân viên</h2>
+    <button id="openAddModal" class="add-btn">+ Thêm nhân viên</button>
 
-  <table id="employeeTable">
-    <thead>
-      <tr>
-        <th>ID</th><th>Tên</th><th>Email</th><th>Lương</th>
-        <th>Thưởng</th><th>Khấu trừ</th><th>Tổng</th><th>Hành động</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+    <table id="employeeTable">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tên</th>
+          <th>Email</th>
+          <th>Lương</th>
+          <th>Thưởng</th>
+          <th>Khấu trừ</th>
+          <th>Tổng</th>
+          <th>Hành động</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <div id="deleteModal" class="modal">
+  <div class="modal-content">
+    <h3>Xóa nhân viên</h3>
+    <p>Bạn có chắc muốn xóa nhân viên này?</p>
 
-  
-  <div id="userModal" class="modal">
-    <div class="modal-content">
-      <h3 id="modalTitle">Thêm nhân viên</h3>
-      <input type="hidden" id="userId">
-      <input id="name" placeholder="Tên nhân viên">
-      <input id="email" placeholder="Email">
-      <input id="salary" placeholder="Lương">
-      <input id="bonus" placeholder="Thưởng (vd: 20%)">
-      <input id="deduction" placeholder="Khấu trừ (vd: 10%)">
-      <button id="saveBtn" class="add-btn">Lưu</button>
-      <button id="closeModal">Đóng</button>
+    <div style="margin-top: 15px; display: flex; gap: 10px;">
+      <button id="confirmDelete" class="delete-btn">OK</button>
+      <button id="cancelDelete">Hủy</button>
     </div>
   </div>
-  <script src="index.js"></script>
-  
-</body>
+</div>
+    <div id="pagination" class="pagination">
+      <button id="prevPage">Prev</button>
+      <span id="pageInfo"></span>
+      <button id="nextPage">Next</button>
+    </div>
+    <div id="userModal" class="modal">
+      <div class="modal-content">
+        <h3 id="modalTitle">Thêm nhân viên</h3>
+        <input type="hidden" id="userId" />
+
+        <input id="name" placeholder="Tên nhân viên" />
+        <div class="error" id="errorName"></div>
+
+        <input id="email" placeholder="Email" />
+        <div class="error" id="errorEmail"></div>
+
+        <input id="salary" placeholder="Lương" />
+        <div class="error" id="errorSalary"></div>
+
+        <input id="bonus" placeholder="Thưởng (vd: 20%)" />
+        <div class="error" id="errorBonus"></div>
+
+        <input id="deduction" placeholder="Khấu trừ (vd: 10%)" />
+        <div class="error" id="errorDeduction"></div>
+
+        <button id="saveBtn" class="add-btn">Lưu</button>
+        <button id="closeModal">Đóng</button>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
 </html>

@@ -1,22 +1,6 @@
 {
   "users": [
     {
-      "id": "1",
-      "name": "Tiến",
-      "email": "tiennq@gmail.com",
-      "salary": 100000,
-      "bonus": "20%",
-      "deduction": "10%"
-    },
-    {
-      "name": "Huy",
-      "email": "huytran@gmail.com",
-      "salary": 95000,
-      "bonus": "15%",
-      "deduction": "12%",
-      "id": "2"
-    },
-    {
       "id": "3",
       "name": "Linh",
       "email": "linhphan@gmail.com",
@@ -47,14 +31,6 @@
       "salary": 105000,
       "bonus": "20%",
       "deduction": "8%"
-    },
-    {
-      "name": "Thảo",
-      "email": "tểtrt",
-      "salary": 4234234,
-      "bonus": "df",
-      "deduction": "10%",
-      "id": "3ab5"
     },
     {
       "id": "3eee",

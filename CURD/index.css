@@ -73,3 +73,10 @@
     .modal button {
       margin-top: 10px;
     }
+
+.error {
+  color: red;
+  font-size: 12px;
+  height: 14px; /* giữ chỗ cho tránh layout nhảy */
+  margin-bottom: 5px;
+}

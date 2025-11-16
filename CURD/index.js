@@ -6,14 +6,48 @@
     const saveBtn = document.getElementById("saveBtn");
     const openAddModal = document.getElementById("openAddModal");
     const closeModal = document.getElementById("closeModal");
-
+    let currentPage=1;
+const itemsPerPage = 5; // Số dòng mỗi trang
+let allUsers = [];      // Lưu toàn bộ user để phân trang
     
     async function fetchUsers() {
-      const res = await fetch(API_URL);
-      const data = await res.json();
-      renderTable(data);
-    }
+  const res = await fetch(API_URL);
+  allUsers = await res.json();
 
+  const totalPages = Math.ceil(allUsers.length / itemsPerPage);
+
+  // Nếu đang ở trang cuối mà xóa hết → lùi lại 1 trang
+  if (currentPage > totalPages) {
+    currentPage = totalPages > 0 ? totalPages : 1;
+  }
+
+  renderPagination();
+}
+    function renderPagination() {
+  const totalPages = Math.ceil(allUsers.length / itemsPerPage);
+
+  // Chặn vượt trang
+  if (currentPage < 1) currentPage = 1;
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  // Tính index
+  const start = (currentPage - 1) * itemsPerPage;
+  const end = start + itemsPerPage;
+
+  // Lấy data cho trang hiện tại
+  const pageData = allUsers.slice(start, end);
+
+  // Vẽ bảng như cũ
+  renderTable(pageData);
+
+  // Hiển thị text trang
+  document.getElementById("pageInfo").textContent =
+    `Trang ${currentPage} / ${totalPages}`;
+
+  // Enable/disable nút
+  document.getElementById("prevPage").disabled = currentPage === 1;
+  document.getElementById("nextPage").disabled = currentPage === totalPages;
+}
     function renderTable(data) {
       tbody.innerHTML = "";
       data.forEach(emp => {
@@ -41,11 +75,67 @@
 
     // Mở modal thêm
     openAddModal.onclick = () => {
-      modalTitle.textContent = "Thêm nhân viên";
-      saveBtn.onclick = addUser;
-      modal.style.display = "flex";
-      clearForm();
-    };
+  modalTitle.textContent = "Thêm nhân viên";
+  modal.style.display = "flex";
+  clearForm(); 
+
+  saveBtn.onclick = () => {
+    
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const salary = document.getElementById("salary").value.trim();
+    const bonus = document.getElementById("bonus").value.trim();
+    const deduction = document.getElementById("deduction").value.trim();
+
+    
+    document.getElementById("errorName").textContent = "";
+    document.getElementById("errorEmail").textContent = "";
+    document.getElementById("errorSalary").textContent = "";
+    document.getElementById("errorBonus").textContent = "";
+    document.getElementById("errorDeduction").textContent = "";
+
+    let valid = true;
+
+    
+    if (!name) {
+      document.getElementById("errorName").textContent = "Vui lòng nhập tên nhân viên";
+      valid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      document.getElementById("errorEmail").textContent = "Email không hợp lệ";
+      valid = false;
+    }
+
+    if (!salary || isNaN(salary) || Number(salary) <= 0) {
+      document.getElementById("errorSalary").textContent = "Lương phải là số lớn hơn 0";
+      valid = false;
+    }
+
+    const percentRegex = /^\d+%$/;
+    if (bonus && !percentRegex.test(bonus)) {
+      document.getElementById("errorBonus").textContent = "Thưởng phải theo định dạng số% (vd: 20%)";
+      valid = false;
+    }
+
+    if (deduction && !percentRegex.test(deduction)) {
+      document.getElementById("errorDeduction").textContent = "Khấu trừ phải theo định dạng số% (vd: 10%)";
+      valid = false;
+    }
+
+    
+    if (!valid) return;
+
+    addUser({
+      name,
+      email,
+      salary: Number(salary),
+      bonus,
+      deduction
+    });
+  };
+};
 
     // Đóng modal
     closeModal.onclick = () => modal.style.display = "none";
@@ -83,11 +173,10 @@
     }
 
     // Xóa nhân viên
-    async function deleteUser(id) {
-      if (!confirm("Bạn có chắc muốn xóa nhân viên này?")) return;
-      await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-      fetchUsers();
-    }
+    function deleteUser(id) {
+  deleteId = id;           // lưu ID tạm
+  deleteModal.style.display = "flex";  // mở modal xác nhận
+}
 
     // Sửa nhân viên
     async function editUser(id) {
@@ -119,3 +208,29 @@
     }
 
     fetchUsers();
+
+    document.getElementById("prevPage").onclick = () => {
+  currentPage--;
+  renderPagination();
+};
+
+document.getElementById("nextPage").onclick = () => {
+  currentPage++;
+  renderPagination();
+};
+
+const deleteModal = document.getElementById("deleteModal");
+const confirmDelete = document.getElementById("confirmDelete");
+const cancelDelete = document.getElementById("cancelDelete");
+let deleteId = null; // lưu ID nhân viên chuẩn bị xoá
+
+confirmDelete.onclick = async () => {
+  await fetch(`${API_URL}/${deleteId}`, { method: "DELETE" });
+  deleteModal.style.display = "none";
+  fetchUsers();
+};
+
+cancelDelete.onclick = () => {
+  deleteModal.style.display = "none";
+  deleteId = null;
+};
