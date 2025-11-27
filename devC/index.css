@@ -1,0 +1,248 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+               Helvetica, Arial, sans-serif;
+    
+}
+.checkout_header {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 10;
+  
+}
+
+.checkout_header h2 {
+  font-size: 28px;
+  font-weight: 700;
+  color: white;
+}
+
+.item_count {
+  background: rgba(180, 190, 230, 0.8);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.checkout_title {
+    width: 100vw;
+}
+.container{
+    height:100vh;
+    width: 100vw;
+    position: relative;   
+}
+.left_checkout {
+    border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    padding: 20px;
+       
+    border: 1px solid #e5e5e5;
+}
+img[src="b.png"] {
+    height: 25vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+}
+.checkout {
+    
+    display: flex;
+    position: absolute;
+    z-index: 2;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    padding-top: 60px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-bottom: 30px;
+    border: 2px solid black;
+    
+    
+}
+.left_checkout {
+    width:50%;
+    height:100%;
+    background-color: rgb(222, 222, 222);
+}
+.right_checkout {
+    width:50%;
+    height:100%;
+    background-color: rgb(244, 244, 244);
+}
+.item_checkout {
+    height:20%;
+    display:flex;
+   
+    width:100%;
+    overflow: hidden;
+    align-items: center;
+
+
+}
+.item_info {
+    width:100%;
+    display:flex;
+    justify-content: space-between;
+    
+    
+}
+.item_quantity{
+    display:flex;
+    justify-content: space-between;
+}
+.item_infomation {
+    width:100%;
+    
+}
+.item_checkout img{
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 20px;
+    width:150px;
+    height:100px;
+}
+h3 {
+    margin-bottom: 50px;
+}
+.divider {
+      
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    }
+
+
+    .divider::before,
+    .divider::after {
+      content: " ";
+      border-bottom: 2px solid #cdcdcd;
+      flex: 1
+    }
+    .coupon {
+        align-items: center;
+        display: flex;
+    }
+.coupon_input {
+    width: 70%;
+    height: 50px;
+    border: 1px solid #e2e2e2;
+  border-radius: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.coupon_button {
+    width: 30%;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+}
+.sub_total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    font-size: 18px;
+    color: gray;
+}
+.Tax {
+    color: gray;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    font-size: 18px;
+}
+.Total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.right_checkout {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  
+  padding: 20px;
+  
+}
+
+.right_checkout h3 {
+  margin-bottom: 15px;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.right_checkout label {
+  display: block;
+  
+  font-size: 14px;
+  color: #333;
+  margin: 25px 0 15px 0;
+}
+
+.right_checkout input {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  
+  border: 1px solid #e2e2e2;
+  border-radius: 10px;
+  font-size: 14px;
+  background:  rgb(222, 222, 222);
+}
+
+.submit_btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  margin-top: 45px;
+  background: #111;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .checkout {
+    flex-direction: column;   
+    height: auto;             
+    padding: 20px;            
+    overflow-y: auto;      
+  }
+
+  .left_checkout,
+  .right_checkout {
+    width: 100%;             
+    height: auto;             
+    margin-bottom: 20px;   
+  }
+
+  .item_checkout img {
+    width: 120px;
+    height: 90px;
+  }
+}
